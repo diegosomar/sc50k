@@ -14,7 +14,7 @@ add_action('admin_enqueue_scripts', function(){
  * Theme assets
  */
 add_action('wp_enqueue_scripts', function () {
-  
+
   // Remove o jQuery / jQuery Migrate padrão. Eles serão carregados inline no <head>
   wp_deregister_script('jquery');
 

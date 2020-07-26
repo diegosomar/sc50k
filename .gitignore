@@ -52,3 +52,5 @@ dist/**/*.dev.css
 
 # ignore ctags file
 tags
+
+env.php

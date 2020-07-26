@@ -1,6 +1,19 @@
 <?php
 
-add_filter('show_admin_bar', '__return_false');
+/**
+ * Load alternative custom templates
+ */
+add_filter( 'theme_page_templates', function ( $post_templates ) {
+  // $post_templates['views/layouts/page_info.php'] = 'Info';
+  return $post_templates;
+} );
+
+/**
+ * Remove admin top bar in development
+ */
+add_filter('show_admin_bar', function(){
+  return ( SITE_ENV == 'production' );
+});
 
 /**
  * Carrega os JS de forma assíncrona
@@ -65,14 +78,14 @@ function the_content_iframe_div_wrapper($content) {
     $content = str_replace($match, $wrappedframe, $content);
   }
 
-  return $content;    
+  return $content;
 }
 
 /**
  * Altera a tag <link> stylesheet adicionando opções para carregamento assíncrono
  */
-add_filter( 'style_loader_tag', 'becolonias_change_stylesheet_tag_to_allow_async', 9999, 4 );
-function becolonias_change_stylesheet_tag_to_allow_async( $html, $handle, $href, $media ){
+add_filter( 'style_loader_tag', 'sc50k_change_stylesheet_tag_to_allow_async', 9999, 4 );
+function sc50k_change_stylesheet_tag_to_allow_async( $html, $handle, $href, $media ){
   if ( ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ){
     $html_ori = $html;
 
